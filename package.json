@@ -1,0 +1,29 @@
+{
+  "name": "npmjs",
+  "version": "1.0.0",
+  "description": "NPM basic exercises from platzi course.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cherced/NPM.git"
+  },
+  "author": "CHERCED",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Cherced/NPM/issues"
+  },
+  "homepage": "https://github.com/Cherced/NPM#readme",
+  "dependencies": {
+    "moment": "^2.29.1"    
+  },
+  "devDependencies": {
+    "date-fns": "^2.24.0",
+    "webpack": "^5.53.0"
+  },
+  "optionalDependencies": {
+    "eslint": "^7.32.0"
+  }
+}

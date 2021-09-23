@@ -1,0 +1,80 @@
+Cuando queremos ver el output de una dependencia sin proceder con su instalación ejecutamos.
+
+npm install name_package --dry-run
+
+Instalar la última versión y desde los servidores de npm:
+
+npm install webpack -f
+
+npm install webpack --force
+
+Instalar una versión exacta de un paquete:
+
+npm install json-server@0.15.0
+
+
+Un pequeño resumen:
+
+Actualizar paquetes
+
+Revisar que paquetes disponen de nuevas versiones
+npm outdate
+
+Para ver un output más detallado
+npm outdate --dd
+
+Actualizar los paquetes que no están en la ultima versión
+npm update
+
+Actualizar un paquete especifico
+npm install json-server@latest
+
+Eliminar paquetes
+
+Eliminar un paquete de node_modules y del archivo package.json
+npm uninstall json-server
+
+Desinstalar un paquete de todo node_modules pero no del archivo package.json
+npm uninstall webpack --no-save
+
+
+En caso de que nuestros archivos de node_module no estén bien instalados o tengamos una versión anterior lo que podemos hacer es lo siguiente:
+npm cache clear --force
+#Para verificar que verdaderamente se borro podemos usar
+npm cache verify
+Uno de los errores que podemos tener es tener algún valor corrupto en node_module, o tambien que la instalación no este completa de los paquetes que hemos instalado, para ello podemos eliminar el paquete con el siguiente comando:
+rm -rf node_modules  #este comando eliminar la carpeta 
+Otra alternativa para eliminar de forma segura una carpeta es instalando el siguiente paquete:
+sudo npm install -g rimraf
+Ahora podemos ejecutar el siguiente comando para eliminar node_module
+rimraf node_modules 
+#Ahora podemos volver a instalar nuestro paquetes
+npm install
+
+para poder activar la opción de verbose (es decir que nos muestre mayor información de lo que esta haciendo el comando)
+npm run [comando] --dd
+Cuando npm nos lance algún error es recomendable ir al archivo de logs que nos muestra
+image-20200426072919282.png
+
+<h3>Solucionando problemas</h3>
+uno de los problemas que podemos toparnos en la construcción de nuestro proyectos trabajando con un equipo es que nuestros archivos de node__moduls no estén correctamente instalados o tengamos una versión anterior, una forma de solucionarlo es eliminar la carpeta de ‘node_modules’ o ejecutar un comando que a nosotros nos va a dar seguridad de limpiar ese ‘cache’ que pueda llegar a existir.
+
+npm run build --d lo primero es poder ver todo el detalle de la ejecución de nuestro comando y lo hacemos con el flag --d para esto tenemos que leer detenidamente y así poder determinar la causa de nuestro error, de la misma forma al final no deja un archivo .log que podemos abrir con el comando code <ruta> este archivo nos dará una bitácora de toda la ejecución
+npm cache clean -f o npm cache clean --force eliminar la caché
+npm cache verify con este vamos a poder ver si ya la cache ha sido eliminada y que todas las instalaciones de nuestros recursos van a ir hacia los servidores de NPM
+rm -rf <Carpeta/>Eliminar una carpeta y después corremos npm install para que se vuelvan a instalar todas las dependencias.
+sudo npm install -g rimraf este ayuda al borrado de la carpeta de carpetas de forma segura y los instalaremos de forma global, ahora para ejecutarlo lo haremos con el comando rimraf <carpeta>
+
+
+Podemos revisar las vulnerabilidades de nuestro proyecto con:
+npm audit
+En caso de tener vulverabilidades, se recomienda usar el comando:
+npm audit fix
+Y en caso de que esto no lo solucione, podemos ir actualizandolos de uno en uno.
+
+<h3>Seguridad</h3>
+npm audit para ver las vulnerabilidades que tenemos en nuestro proyecto
+npm audit --json nos genera un json con información un poco mas detallada de lo que esta pasando con estos paquetes que instalamos
+una ves sepamos cual es la vulnerabilidad podemos proceder a actualizar cualquiera de los paquetes ejem: npm update eslint-utils --depth 2 esto para instalar todas sus dependencias
+nom audit fix es para solucionar las vulnerabilidades que tengamos en nuestro proyecto básicamente, actualiza a la ultima version nuestros paquetes con las dependencias que requieren, después de esto volvemos a correr npm audit para ver que ya no tenemos vulnerabilidades.
+también hay una herramienta que garantiza que estemos siempre actualizados con nuestras dependencias del proyecto y es snyk.io
